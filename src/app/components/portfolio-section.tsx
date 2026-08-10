@@ -36,6 +36,16 @@ const portfolioItems: PortfolioItem[] = [
     link: 'https://hotel-flow-sable.vercel.app/#/login',
     mockupDesktop: '/hotelflowDesk.png',
     mockupMobile: '/hotelflowMobile.png'
+  },
+  {
+    title: 'Itukéti',
+    category: 'E-commerce & Impacto Social',
+    description: 'Plataforma de e-commerce premium desenvolvida para conectar usuários à arte indígena autêntica do Pantanal brasileiro. O projeto promove sustentabilidade, impacto social e valorização cultural, oferecendo peças feitas à mão diretamente pelas comunidades locais.',
+    image: '/ituketiDesk.png',
+    tags: ['E-commerce', 'Impacto Social', 'Arte Indígena', 'Sustentabilidade', 'Cultura & Design'],
+    link: 'https://ituketi.com/',
+    mockupDesktop: '/ituketiDesk.png',
+    mockupMobile: '/ituketiMobile.png'
   }
 ];
 
