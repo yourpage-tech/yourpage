@@ -160,21 +160,21 @@ export default function BriefingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background text-foreground py-12 px-6">
-      <div className="max-w-3xl mx-auto mb-12 flex items-center justify-between">
+    <main className="min-h-screen bg-background text-foreground py-6 sm:py-12 px-4 sm:px-6">
+      <div className="max-w-3xl mx-auto mb-8 sm:mb-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <button 
           onClick={() => navigate('/')}
-          className="flex items-center gap-2 text-sm font-medium hover:text-purple-600 transition-colors cursor-pointer"
+          className="flex items-center gap-2 text-xs sm:text-sm font-medium hover:text-purple-600 transition-colors cursor-pointer"
         >
           <Home className="w-4 h-4" />
           Voltar ao menu inicial
         </button>
-        <div className="text-sm font-bold text-purple-600 bg-purple-600/10 px-4 py-1 rounded-full border border-purple-600/20">
+        <div className="text-xs sm:text-sm font-bold text-purple-600 bg-purple-600/10 px-3.5 py-1 rounded-full border border-purple-600/20">
           Plano: {selectedPlan}
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto mb-12">
+      <div className="max-w-3xl mx-auto mb-8 sm:mb-12">
         <div className="h-2 w-full bg-accent rounded-full overflow-hidden">
           <motion.div 
             className="h-full bg-gradient-to-r from-blue-600 to-purple-600"
@@ -187,7 +187,7 @@ export default function BriefingPage() {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto min-h-[400px]">
+      <div className="max-w-3xl mx-auto min-h-[300px] sm:min-h-[400px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentStep}
@@ -196,29 +196,29 @@ export default function BriefingPage() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <h1 className="text-3xl md:text-4xl font-bold mb-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8">
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 {steps[currentStep].title}
               </span>
             </h1>
             
-            <div className="mb-12">
+            <div className="mb-8 sm:mb-12">
               {steps[currentStep].fields}
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="max-w-3xl mx-auto flex items-center justify-between mt-8">
+      <div className="max-w-3xl mx-auto flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 mt-6 sm:mt-8">
         <button
           onClick={() => {
             setCurrentStep(currentStep - 1);
             setIsSaved(false);
           }}
           disabled={currentStep === 0}
-          className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all cursor-pointer ${currentStep === 0 ? 'opacity-0 pointer-events-none' : 'hover:bg-accent'}`}
+          className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm sm:text-base transition-all cursor-pointer ${currentStep === 0 ? 'hidden sm:flex opacity-0 pointer-events-none' : 'hover:bg-accent'}`}
         >
-          <ArrowLeft className="w-5 h-5" />
+          <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           Voltar
         </button>
 
@@ -227,42 +227,42 @@ export default function BriefingPage() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleNext}
-            className="flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold shadow-lg shadow-purple-500/20 cursor-pointer"
+            className="flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-sm sm:text-base shadow-lg shadow-purple-500/20 cursor-pointer w-full sm:w-auto"
           >
             Próxima pergunta
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </motion.button>
         ) : !isSaved ? (
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => {
               if (validateStep()) {
                 setIsSaved(true);
                 setShowError(false);
-              setErrorMessage('');
+                setErrorMessage('');
               } else {
-              setErrorMessage('Selecione ao menos um objetivo ou descreva um antes de salvar.');
+                setErrorMessage('Selecione ao menos um objetivo ou descreva um antes de salvar.');
                 setShowError(true);
               }
             }}
-            className="flex items-center gap-2 px-10 py-4 rounded-xl bg-blue-600 text-white font-bold shadow-lg shadow-blue-500/20 cursor-pointer"
+            className="flex items-center justify-center gap-2 px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl bg-blue-600 text-white font-bold text-sm sm:text-base shadow-lg shadow-blue-500/20 cursor-pointer w-full sm:w-auto"
           >
-            <Save className="w-5 h-5" />
+            <Save className="w-4 h-4 sm:w-5 sm:h-5" />
             Salvar respostas
           </motion.button>
         ) : (
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={handleSubmit}
             disabled={isSending}
-            className="flex items-center gap-2 px-10 py-4 rounded-xl bg-green-600 text-white font-bold shadow-lg shadow-green-500/20 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed"
+            className="flex items-center justify-center gap-2 px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl bg-green-600 text-white font-bold text-sm sm:text-base shadow-lg shadow-green-500/20 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed w-full sm:w-auto"
           >
             {isSending ? (
-              <>Enviando... <Loader2 className="w-5 h-5 animate-spin" /></>
+              <>Enviando... <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" /></>
             ) : (
-              <>Enviar respostas <Send className="w-5 h-5" /></>
+              <>Enviar respostas <Send className="w-4 h-4 sm:w-5 sm:h-5" /></>
             )}
           </motion.button>
         )}

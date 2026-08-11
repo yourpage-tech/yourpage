@@ -33,37 +33,31 @@ export function CookieBanner() {
           transition={{ duration: 0.4 }}
           className="fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border shadow-2xl"
         >
-          <div className="container mx-auto px-6 py-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 pr-8 md:pr-0">
               <div className="flex-1">
-                <p className="text-sm md:text-base text-muted-foreground">
-                  <span className="font-semibold text-foreground">Cookies e Tecnologias</span>
+                <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+                  <span className="font-semibold text-foreground">Cookies e Tecnologias:</span>
                   {' '}Utilizamos cookies para melhorar sua experiência, personalizar conteúdo, 
                   analisar tráfego e manter você conectado. Ao continuar navegando, você concorda 
-                  com nosso uso de cookies.{' '}
-                  <a 
-                    href="#privacy" 
-                    className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
-                  >
-                    Saiba mais
-                  </a>
+                  com nosso uso de cookies.
                 </p>
               </div>
 
-              <div className="flex gap-3 flex-shrink-0">
+              <div className="flex flex-row gap-2.5 sm:gap-3 w-full sm:w-auto shrink-0 justify-end">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                   onClick={handleReject}
-                  className="px-4 py-2 rounded-lg border border-border hover:bg-accent/50 text-sm font-medium transition-colors cursor-pointer"
+                  className="flex-1 sm:flex-initial px-4 py-2.5 sm:py-2 rounded-lg border border-border hover:bg-accent/50 text-xs sm:text-sm font-medium transition-colors cursor-pointer text-center"
                 >
                   Rejeitar
                 </motion.button>
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                   onClick={handleAccept}
-                  className="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-shadow cursor-pointer"
+                  className="flex-1 sm:flex-initial px-4 py-2.5 sm:py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs sm:text-sm font-medium shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-shadow cursor-pointer text-center"
                 >
                   Aceitar Tudo
                 </motion.button>
@@ -73,9 +67,10 @@ export function CookieBanner() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsVisible(false)}
-                className="md:hidden p-2 rounded-lg bg-accent hover:bg-accent/80 transition-colors absolute top-4 right-4"
+                aria-label="Fechar aviso"
+                className="md:hidden p-1.5 rounded-lg bg-accent hover:bg-accent/80 transition-colors absolute top-3.5 right-3.5"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </motion.button>
             </div>
           </div>

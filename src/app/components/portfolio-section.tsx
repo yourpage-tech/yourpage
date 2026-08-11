@@ -63,25 +63,25 @@ export function PortfolioSection() {
     : [];
 
   return (
-    <section id="portfolio" className="py-32 relative overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section id="portfolio" className="py-16 md:py-32 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 tracking-tight">
             Projetos que <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">inspiram</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Veja alguns exemplos do nosso trabalho e imagine o potencial do seu negócio
           </p>
         </motion.div>
 
         {portfolioItems.length > 0 ? (
-          <div className={`grid grid-cols-1 ${portfolioItems.length === 1 ? 'max-w-2xl mx-auto' : portfolioItems.length === 2 ? 'md:grid-cols-2 max-w-5xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-3'} gap-8`}>
+          <div className={`grid grid-cols-1 ${portfolioItems.length === 1 ? 'max-w-2xl mx-auto' : portfolioItems.length === 2 ? 'md:grid-cols-2 max-w-5xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-3'} gap-6 sm:gap-8`}>
             {portfolioItems.map((item, index) => (
               <motion.div
                 key={index}
@@ -90,10 +90,10 @@ export function PortfolioSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8 }}
+                whileHover={{ y: -6 }}
                 className="group relative rounded-2xl overflow-hidden bg-card border border-border hover:border-purple-600/50 transition-all duration-300 cursor-pointer"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-48 sm:h-64 overflow-hidden">
                   <ImageWithFallback
                     src={item.image}
                     alt={item.title}
@@ -109,23 +109,23 @@ export function PortfolioSection() {
                     <motion.div
                       initial={{ scale: 0.8 }}
                       whileHover={{ scale: 1 }}
-                      className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
+                      className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
                     >
-                      <ExternalLink className="w-8 h-8 text-white" />
+                      <ExternalLink className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                     </motion.div>
                   </motion.div>
                 </div>
 
-                <div className="p-6">
-                  <div className="text-sm text-purple-600 font-medium mb-2">{item.category}</div>
-                  <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground mb-4">{item.description}</p>
+                <div className="p-5 sm:p-6">
+                  <div className="text-xs sm:text-sm text-purple-600 font-medium mb-1.5 sm:mb-2">{item.category}</div>
+                  <h3 className="text-xl sm:text-2xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed line-clamp-3 sm:line-clamp-none">{item.description}</p>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {item.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 rounded-full bg-accent text-sm text-accent-foreground"
+                        className="px-2.5 py-1 rounded-full bg-accent text-xs sm:text-sm text-accent-foreground"
                       >
                         {tag}
                       </span>
@@ -136,8 +136,8 @@ export function PortfolioSection() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 px-6 rounded-2xl bg-card border border-border/50 max-w-xl mx-auto">
-            <p className="text-muted-foreground text-lg font-medium">
+          <div className="text-center py-12 sm:py-16 px-6 rounded-2xl bg-card border border-border/50 max-w-xl mx-auto">
+            <p className="text-muted-foreground text-base sm:text-lg font-medium">
               Novos projetos em breve! 🚀
             </p>
           </div>
@@ -152,35 +152,35 @@ export function PortfolioSection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedItem(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-background/80 backdrop-blur-md overflow-y-auto"
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-card border border-purple-600/20 rounded-3xl shadow-2xl shadow-purple-900/20 p-6 md:p-10"
+              className="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto bg-card border border-purple-600/20 rounded-2xl sm:rounded-3xl shadow-2xl shadow-purple-900/20 p-5 sm:p-8 md:p-10"
             >
               <button
                 onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-accent hover:bg-accent/80 transition-colors cursor-pointer z-20"
+                className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 p-2 rounded-full bg-accent hover:bg-accent/80 transition-colors cursor-pointer z-20"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
 
-              <div className="mb-8">
-                <span className="text-purple-600 font-bold mb-2 block text-sm tracking-wider uppercase">{selectedItem.category}</span>
-                <h3 className="text-3xl md:text-4xl font-bold mb-4">{selectedItem.title}</h3>
-                <p className="text-lg text-muted-foreground mb-6 max-w-3xl">{selectedItem.description}</p>
-                <div className="flex flex-wrap gap-2 mb-8">
+              <div className="mb-6 sm:mb-8 pr-8 sm:pr-0">
+                <span className="text-purple-600 font-bold mb-1.5 block text-xs sm:text-sm tracking-wider uppercase">{selectedItem.category}</span>
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">{selectedItem.title}</h3>
+                <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-5 sm:mb-6 max-w-3xl leading-relaxed">{selectedItem.description}</p>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6 sm:mb-8">
                   {selectedItem.tags.map((tag, idx) => (
-                    <span key={idx} className="px-3 py-1 rounded-full bg-purple-600/10 text-purple-600 text-sm font-medium border border-purple-600/20">
+                    <span key={idx} className="px-2.5 py-1 rounded-full bg-purple-600/10 text-purple-600 text-xs sm:text-sm font-medium border border-purple-600/20">
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
                   {selectedItem.link && (
                     <motion.a
                       href={selectedItem.link}
@@ -188,10 +188,10 @@ export function PortfolioSection() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all cursor-pointer"
+                      className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-sm sm:text-base shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all cursor-pointer w-full sm:w-auto"
                     >
                       Acessar Projeto Online
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                     </motion.a>
                   )}
                   {selectedItem.pdf && (
@@ -200,10 +200,10 @@ export function PortfolioSection() {
                       download
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all cursor-pointer"
+                      className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-sm sm:text-base shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all cursor-pointer w-full sm:w-auto"
                     >
                       Baixar Apresentação
-                      <ExternalLink className="w-5 h-5" />
+                      <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
                     </motion.a>
                   )}
                 </div>
@@ -211,7 +211,7 @@ export function PortfolioSection() {
 
               {/* Área de Mockups (Desktop e Mobile) */}
               {(desktopsList.length > 0 || selectedItem.mockupMobile) && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-accent/30 rounded-2xl p-6 border border-border/50">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 bg-accent/30 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-border/50">
                   {desktopsList.length > 0 && (
                     <div className="md:col-span-2 flex flex-col gap-3">
                       <div className="flex items-center justify-between">

@@ -22,17 +22,17 @@ export function Footer() {
 
   return (
     <footer className="relative border-t border-border">
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div className="container mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10 sm:mb-12">
           {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 sm:col-span-2">
             <div className="relative inline-block mb-4">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 blur-lg opacity-30"></div>
               <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-semibold text-xl">
                 YourPage
               </div>
             </div>
-            <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
+            <p className="text-muted-foreground mb-6 max-w-md text-sm sm:text-base leading-relaxed">
               A YourPage é focada no <strong>desenvolvimento de sites e sistemas sob medida</strong> em <strong>Maceió/AL</strong> e com atendimento em todo o Brasil. Criamos <strong>landing pages premium</strong>, <strong>sites institucionais</strong> e <strong>sistemas web personalizados</strong> com alto desempenho e design exclusivo.
             </p>
             <div className="flex gap-4">
@@ -41,7 +41,8 @@ export function Footer() {
                 href="https://www.instagram.com/yourpage.tech?igsh=MTR6c3J4MzU4YXozaQ=="
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-accent hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 flex items-center justify-center transition-colors hover:text-white"
+                aria-label="Instagram YourPage"
+                className="w-10 h-10 rounded-full bg-accent hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 flex items-center justify-center transition-colors hover:text-white cursor-pointer"
               >
                 <Instagram className="w-5 h-5" />
               </motion.a>
@@ -50,7 +51,8 @@ export function Footer() {
                 href="https://wa.me/5582988736580?text=Ol%C3%A1%2C%20vim%20pelo%20site%20YourPage."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-accent hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 flex items-center justify-center transition-colors hover:text-white"
+                aria-label="WhatsApp YourPage"
+                className="w-10 h-10 rounded-full bg-accent hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 flex items-center justify-center transition-colors hover:text-white cursor-pointer"
               >
                 <MessageCircle className="w-5 h-5" />
               </motion.a>
@@ -59,8 +61,8 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Links Rápidos</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold mb-3 sm:mb-4 text-base sm:text-lg">Links Rápidos</h4>
+            <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
               <li>
                 <a href="#beneficios" onClick={(e) => handleNavClick(e, '#beneficios')} className="text-muted-foreground hover:text-foreground transition-colors">
                   Benefícios
@@ -86,22 +88,22 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-4">Contato</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3 text-muted-foreground">
-                <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
-                <a href="mailto:yourpage.business.tech@gmail.com" className="hover:text-foreground transition-colors">yourpage.business.tech@gmail.com</a>
+            <h4 className="font-semibold mb-3 sm:mb-4 text-base sm:text-lg">Contato</h4>
+            <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
+              <li className="flex items-start gap-2.5 text-muted-foreground">
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 mt-1 flex-shrink-0" />
+                <a href="mailto:yourpage.business.tech@gmail.com" className="hover:text-foreground transition-colors break-all">yourpage.business.tech@gmail.com</a>
               </li>
-              <li className="flex items-start gap-3 text-muted-foreground">
-                <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
+              <li className="flex items-start gap-2.5 text-muted-foreground">
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" />
                 <a
                   href="https://wa.me/5582988736580?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-foreground transition-colors">(82) 98873-6580</a>
               </li>
-              <li className="flex items-start gap-3 text-muted-foreground">
-                <MapPin className="w-5 h-5 mt-0.5 flex-shrink-0" />
+              <li className="flex items-start gap-2.5 text-muted-foreground">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" />
                 <span>Maceió, AL</span>
               </li>
             </ul>
@@ -109,12 +111,12 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-border">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
+        <div className="pt-6 sm:pt-8 border-t border-border">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-center sm:text-left">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               © 2026 YourPage. Todos os direitos reservados.
             </p>
-            <div className="flex gap-6 text-sm text-muted-foreground">
+            <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground">
               <button
                 onClick={() => setActiveModal('privacy')}
                 className="hover:text-foreground transition-colors cursor-pointer"
@@ -143,18 +145,18 @@ export function Footer() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActiveModal(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-background/80 backdrop-blur-md overflow-y-auto"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto bg-card border border-purple-600/30 rounded-3xl shadow-2xl p-6 md:p-8"
+              className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto bg-card border border-purple-600/30 rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8"
             >
               <button
                 onClick={() => setActiveModal(null)}
-                className="absolute top-5 right-5 p-2 rounded-full bg-accent hover:bg-accent/80 transition-colors cursor-pointer"
+                className="absolute top-4 right-4 p-2 rounded-full bg-accent hover:bg-accent/80 transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>

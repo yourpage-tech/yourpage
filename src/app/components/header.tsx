@@ -50,7 +50,7 @@ export function Header() {
       transition={{ duration: 0.6 }}
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border/50"
     >
-      <div className="container mx-auto px-6 py-5 flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 py-3.5 md:py-5 flex items-center justify-between">
         <motion.div
           whileHover={{ scale: 1.05 }}
           onClick={handleScrollToTop}
@@ -59,7 +59,7 @@ export function Header() {
         >
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 blur-lg opacity-50"></div>
-            <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-semibold text-xl">
+            <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-lg font-semibold text-lg sm:text-xl">
               YourPage
             </div>
           </div>
@@ -84,12 +84,13 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleTheme}
-            className="p-2 rounded-lg bg-accent hover:bg-accent/80 transition-colors"
+            aria-label="Alternar Tema"
+            className="p-2 rounded-lg bg-accent hover:bg-accent/80 transition-colors cursor-pointer"
           >
             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </motion.button>
@@ -98,7 +99,7 @@ export function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleWhatsAppContact}
-            className="hidden md:block px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-shadow"
+            className="hidden md:block px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:shadow-lg hover:shadow-purple-500/50 transition-shadow cursor-pointer"
           >
             Falar com especialista
           </motion.button>
@@ -106,7 +107,8 @@ export function Header() {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-accent"
+            aria-label="Abrir menu"
+            className="md:hidden p-2 rounded-lg bg-accent cursor-pointer"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </motion.button>
@@ -120,9 +122,9 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-lg"
+            className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-xl overflow-hidden"
           >
-            <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
+            <nav className="container mx-auto px-5 py-5 flex flex-col gap-3">
               {[
                 { name: 'Benefícios', href: '#beneficios' },
                 { name: 'Serviços', href: '#servicos' },
@@ -133,13 +135,15 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="relative text-foreground/80 hover:text-foreground transition-colors py-2 font-medium group w-max"
+                  className="relative text-foreground/80 hover:text-foreground transition-colors py-2.5 px-3 rounded-lg hover:bg-accent/50 text-base font-medium transition-all cursor-pointer block"
                 >
                   <span>{item.name}</span>
-                  <span className="absolute bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transition-all duration-300 group-hover:w-full"></span>
                 </a>
               ))}
-              <button onClick={handleWhatsAppContact} className="mt-4 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium">
+              <button
+                onClick={handleWhatsAppContact}
+                className="mt-2 w-full py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-center cursor-pointer shadow-md"
+              >
                 Falar com especialista
               </button>
             </nav>
