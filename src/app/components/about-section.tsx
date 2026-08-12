@@ -8,9 +8,8 @@ const team = [
     image: '/sarah-bomfim.png',
     bio: 'Especialista em desenvolvimento frontend e design de interfaces. Focada em criar experiências de usuário fluidas, modernas e otimizadas para conversão, garantindo performance máxima (100/100 PageSpeed) e acabamento premium.',
     socials: {
-      linkedin: 'https://linkedin.com',
-      instagram: 'https://instagram.com',
-      github: 'https://github.com'
+      linkedin: 'https://www.linkedin.com/in/sarah-bomfim-b10655270/',
+      instagram: 'https://www.instagram.com/sarahbomfimm/',
     }
   },
   {
@@ -19,9 +18,8 @@ const team = [
     image: '/maria_lisboa.png',
     bio: 'Especialista em arquitetura de sistemas, banco de dados e integrações. Responsável pela lógica de negócios, segurança das plataformas e por coordenar projetos do briefing à entrega com alto padrão técnico.',
     socials: {
-      linkedin: 'https://linkedin.com',
-      instagram: 'https://instagram.com',
-      github: 'https://github.com'
+      linkedin: 'https://www.linkedin.com/in/maria-lisboa-%F0%9F%91%A9%F0%9F%8F%BC%E2%80%8D%F0%9F%92%BB-b5b221137/',
+      instagram: 'https://www.instagram.com/marialisboa.dev/',
     }
   }
 ];
@@ -118,7 +116,7 @@ export function AboutSection() {
                   >
                     <Instagram className="w-4 h-4" />
                   </motion.a>
-                  <motion.a
+                  {/* <motion.a
                     whileHover={{ scale: 1.15, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     href={member.socials.github}
@@ -128,7 +126,7 @@ export function AboutSection() {
                     className="w-9 h-9 rounded-xl bg-secondary hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 flex items-center justify-center text-muted-foreground hover:text-white transition-all cursor-pointer shadow-sm"
                   >
                     <Github className="w-4 h-4" />
-                  </motion.a>
+                  </motion.a> */}
                 </div>
               </div>
             </motion.div>
