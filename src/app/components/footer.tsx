@@ -79,6 +79,11 @@ export function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#sobre-nos" onClick={(e) => handleNavClick(e, '#sobre-nos')} className="text-muted-foreground hover:text-foreground transition-colors">
+                  Quem Somos
+                </a>
+              </li>
+              <li>
                 <a href="#planos" onClick={(e) => handleNavClick(e, '#planos')} className="text-muted-foreground hover:text-foreground transition-colors">
                   Planos
                 </a>
