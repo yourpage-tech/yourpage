@@ -7,6 +7,7 @@ import { ServicesSection } from './components/services-section';
 import { PortfolioSection } from './components/portfolio-section';
 import { TestimonialsSection } from './components/testimonials-section';
 import { AboutSection } from './components/about-section';
+import { HowWeWorkSection } from './components/how-we-work-section';
 import { CTASection } from './components/cta-section';
 import { Footer } from './components/footer';
 import { ScrollToTop } from './components/scroll-to-top';
@@ -22,6 +23,7 @@ function HomePage() {
       <BenefitsSection />
       <ServicesSection />
       <PortfolioSection />
+      <HowWeWorkSection />
       <TestimonialsSection />
       <AboutSection />
       <CTASection />

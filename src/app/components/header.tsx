@@ -70,6 +70,7 @@ export function Header() {
             { name: 'Benefícios', href: '#beneficios' },
             { name: 'Serviços', href: '#servicos' },
             { name: 'Portfólio', href: '#portfolio' },
+            { name: 'Como Funciona', href: '#como-funciona' },
             { name: 'Quem Somos', href: '#sobre-nos' },
             { name: 'Orçamentos', href: '#planos' }
           ].map((item) => (
@@ -130,6 +131,7 @@ export function Header() {
                 { name: 'Benefícios', href: '#beneficios' },
                 { name: 'Serviços', href: '#servicos' },
                 { name: 'Portfólio', href: '#portfolio' },
+                { name: 'Como Funciona', href: '#como-funciona' },
                 { name: 'Quem Somos', href: '#sobre-nos' },
                 { name: 'Orçamentos', href: '#planos' }
               ].map((item) => (
