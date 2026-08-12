@@ -4,9 +4,10 @@ import { Sparkles, Linkedin, Instagram, Github } from 'lucide-react';
 const team = [
   {
     name: 'Sarah Bomfim',
-    role: 'Co-fundadora & Tech Lead / UX Designer',
+    role: 'Co-fundadora · Tech Lead · UX/UI Designer',
     image: '/sarah-bomfim.png',
-    bio: 'Especialista em desenvolvimento frontend e design de interfaces. Focada em criar experiências de usuário fluidas, modernas e otimizadas para conversão, garantindo performance máxima (100/100 PageSpeed) e acabamento premium.',
+    bio: 'Especialista em Front-end e experiência do usuário, responsável por transformar necessidades de negócio em interfaces modernas, intuitivas e de alta performance.',
+    focus: ['UX/UI', 'Front-end', 'Design System', 'Performance'],
     socials: {
       linkedin: 'https://www.linkedin.com/in/sarah-bomfim-b10655270/',
       instagram: 'https://www.instagram.com/sarahbomfimm/',
@@ -14,9 +15,10 @@ const team = [
   },
   {
     name: 'Maria Lisboa',
-    role: 'Co-fundadora & Full Stack Developer / Product Manager',
+    role: 'Co-fundadora · Full Stack Developer · Product Manager',
     image: '/maria_lisboa.png',
-    bio: 'Especialista em arquitetura de sistemas, banco de dados e integrações. Responsável pela lógica de negócios, segurança das plataformas e por coordenar projetos do briefing à entrega com alto padrão técnico.',
+    bio: 'Especialista em arquitetura de sistemas e desenvolvimento de soluções sob medida, conectando tecnologia, negócio e experiência do usuário.',
+    focus: ['Full Stack', 'Arquitetura', 'Integrações', 'Produto'],
     socials: {
       linkedin: 'https://www.linkedin.com/in/maria-lisboa-%F0%9F%91%A9%F0%9F%8F%BC%E2%80%8D%F0%9F%92%BB-b5b221137/',
       instagram: 'https://www.instagram.com/marialisboa.dev/',
@@ -42,15 +44,20 @@ export function AboutSection() {
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-600/20 mb-5">
             <Sparkles className="w-3.5 h-3.5 text-purple-600 animate-pulse" />
-            <span className="text-xs sm:text-sm font-medium">Quem Somos</span>
+            <span className="text-xs sm:text-sm font-medium">Por que confiar em nós</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            Por trás da <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">YourPage</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 tracking-tight max-w-3xl">
+            Tecnologia com <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">estratégia, design e experiência.</span>
           </h2>
-          <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Conectamos tecnologia de ponta e design estratégico. Sarah e Maria unem forças para entregar soluções digitais personalizadas que geram valor real para sua marca.
-          </p>
+          <div className="max-w-3xl mx-auto space-y-4">
+            <p className="text-base sm:text-xl text-muted-foreground leading-relaxed font-medium">
+              Somos uma dupla de profissionais de tecnologia que une desenvolvimento, design e visão de produto para transformar ideias em soluções digitais profissionais, rápidas e escaláveis.
+            </p>
+            <p className="text-sm sm:text-base text-muted-foreground/80 leading-relaxed max-w-2xl mx-auto">
+              Cada projeto é desenvolvido sob medida, com acompanhamento próximo, comunicação clara e foco no resultado do negócio.
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
@@ -85,12 +92,29 @@ export function AboutSection() {
                 <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-colors duration-300">
                   {member.name}
                 </h3>
-                <span className="text-xs sm:text-sm font-semibold text-purple-600/90 dark:text-purple-400 mb-3 block">
+                <span className="text-xs sm:text-sm font-semibold text-purple-600/90 dark:text-purple-400 mb-2 block">
                   {member.role}
                 </span>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                   {member.bio}
                 </p>
+
+                {/* Focus Area */}
+                <div className="flex flex-col gap-1.5 mb-5 w-full text-left">
+                  <span className="text-xs font-bold text-foreground tracking-wider">
+                    Foco:
+                  </span>
+                  <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                    {member.focus.map((item, idx) => (
+                      <span key={idx} className="flex items-center gap-1.5">
+                        <span className="px-2 py-0.5 rounded bg-secondary text-secondary-foreground font-medium border border-border/80 text-xs">
+                          {item}
+                        </span>
+                        {idx < member.focus.length - 1 && <span className="text-muted-foreground/60 text-xs">·</span>}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
                 {/* Social icons */}
                 <div className="flex gap-3">
