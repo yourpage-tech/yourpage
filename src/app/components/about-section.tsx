@@ -5,7 +5,7 @@ const team = [
   {
     name: 'Sarah Bomfim',
     role: 'Co-fundadora & Tech Lead / UX Designer',
-    image: '/sarah_bomfim.png',
+    image: '/sarah-bomfim.png',
     bio: 'Especialista em desenvolvimento frontend e design de interfaces. Focada em criar experiências de usuário fluidas, modernas e otimizadas para conversão, garantindo performance máxima (100/100 PageSpeed) e acabamento premium.',
     socials: {
       linkedin: 'https://linkedin.com',
