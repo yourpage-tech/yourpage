@@ -17,7 +17,7 @@ const plans = [
     buttonLabel: 'Quero uma Landing Page',
   },
   {
-    name: 'Site Institucional / CMS',
+    name: 'Site Institucional',
     description: 'Ideal para empresas que querem crescer e ter autonomia',
     trustText: 'Um site profissional que fortalece sua marca e permite que você atualize seus conteúdos sem depender de um desenvolvedor.',
     features: [
