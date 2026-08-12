@@ -1,60 +1,60 @@
 import { motion } from 'motion/react';
-import { Check, Sparkles, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Check, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const plans = [
   {
     name: 'Landing Page Premium',
-    description: 'A partir de:',
-    price: 'R$ 1.500,00',
-    monthly: null,
+    description: 'Ideal para campanhas e lançamentos',
+    trustText: 'Uma página estratégica para transformar visitantes em oportunidades e aumentar suas conversões.',
     features: [
       'Design exclusivo sob medida',
-      'Performance 100/100 (PageSpeed)',
-      'SEO técnico estruturado para o Google',
-      'Integração com WhatsApp e CRM',
-      'Responsivo (Mobile First)'
+      'Alta performance e carregamento rápido',
+      'SEO técnico para melhor posicionamento no Google',
+      'Integração com WhatsApp e ferramentas de marketing',
+      'Experiência otimizada para celular'
     ],
-    target: null,
     highlight: false,
+    buttonLabel: 'Quero uma Landing Page',
   },
   {
-    name: 'Site Institucional / CMS',
-    description: 'A partir de:',
-    price: 'R$ 2.800,00',
-    monthly: null,
+    name: 'Site Institucional',
+    description: 'Ideal para empresas que querem crescer e ter autonomia',
+    trustText: 'Um site profissional que fortalece sua marca e permite que você atualize seus conteúdos sem depender de um desenvolvedor.',
     features: [
-      'Múltiplas páginas explicativas',
-      'Painel administrativo (CMS) integrado',
-      'Blog ou seção de notícias/portfólio',
-      'Google Analytics & Pixel do Meta',
-      'Treinamento básico de uso'
+      'Site completo e profissional',
+      'Painel administrativo fácil de usar',
+      'Blog, notícias ou portfólio',
+      'Google Analytics e Pixel da Meta',
+      'Treinamento para você gerenciar seu site'
     ],
-    target: null,
     highlight: true,
+    buttonLabel: 'Quero meu site profissional',
   },
   {
     name: 'Sistemas & Plataformas',
-    description: 'A partir de:',
-    price: 'R$ 5.000,00',
-    monthly: null,
+    description: 'Para projetos que precisam de tecnologia sob medida',
+    trustText: 'Transforme processos complexos em uma solução digital segura, escalável e feita exatamente para o seu negócio.',
     features: [
-      'Área logada / Painel do Cliente',
+      'Área restrita e painel do cliente',
       'Banco de dados seguro e escalável',
-      'Integrações com APIs e Webhooks',
-      'Fluxos e lógicas complexas sob medida',
-      'Checkout & Gateway de pagamento'
+      'Integrações com APIs e sistemas externos',
+      'Automação de processos e regras de negócio',
+      'Checkout e meios de pagamento'
     ],
-    target: null,
     highlight: false,
+    buttonLabel: 'Quero discutir meu projeto',
   },
 ];
 
 export function TestimonialsSection() {
-  const navigate = useNavigate();
-
   const handlePlanSelection = (planName: string) => {
-    navigate(`/briefing?plan=${encodeURIComponent(planName)}`);
+    let message = `Olá! Gostaria de solicitar um orçamento para o plano *${planName}*.`;
+    if (planName === 'Conversa sobre Projeto') {
+      message = 'Olá! Não sei qual solução é ideal para mim. Gostaria de ajuda para encontrar a melhor solução e preparar uma proposta personalizada.';
+    }
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/5582993791661?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -95,7 +95,7 @@ export function TestimonialsSection() {
             >
               {plan.highlight && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3.5 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-md">
-                  Mais Popular
+                  Recomendado
                 </div>
               )}
 
@@ -104,11 +104,21 @@ export function TestimonialsSection() {
                 <p className="text-sm text-muted-foreground">{plan.description}</p>
               </div>
 
-              <div className="mb-5 sm:mb-6 pb-5 sm:pb-6 border-b border-border">
-                <div className="text-2xl sm:text-3xl font-bold mb-1">{plan.price}</div>
-                {plan.monthly && (
-                  <div className="text-xs sm:text-sm text-muted-foreground">{plan.monthly}</div>
-                )}
+              <div className="mb-5 sm:mb-6 pb-5 sm:pb-6 border-b border-border flex flex-col justify-between">
+                <div>
+                  <span className="text-xs font-semibold tracking-wider text-purple-600 dark:text-purple-400 uppercase">
+                    Investimento
+                  </span>
+                  <div className="text-xl sm:text-2xl font-bold text-foreground mt-0.5">
+                    Projeto personalizado
+                  </div>
+                </div>
+                <div className="flex items-start gap-2 mt-3 bg-purple-600/5 dark:bg-purple-600/10 p-3 rounded-lg border border-purple-600/10">
+                  <ShieldCheck className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
+                  <p className="text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
+                    {plan.trustText}
+                  </p>
+                </div>
               </div>
 
               <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 flex-grow">
@@ -124,7 +134,7 @@ export function TestimonialsSection() {
                 onClick={() => handlePlanSelection(plan.name)}
                 className={`cursor-pointer flex items-center justify-center w-full py-3.5 rounded-xl font-bold text-sm sm:text-base transition-all ${plan.highlight ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:opacity-90 shadow-md' : 'bg-secondary hover:bg-secondary/80'}`}
               >
-                Começar Agora
+                {plan.buttonLabel}
               </button>
             </motion.div>
           ))}
@@ -143,19 +153,19 @@ export function TestimonialsSection() {
 
           <div className="relative z-10 max-w-2xl">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2.5 sm:mb-3 text-foreground">
-              Precisa de um projeto totalmente personalizado?
+              Não sabe qual solução é ideal para você?
             </h3>
             <p className="text-muted-foreground text-xs sm:text-sm md:text-base leading-relaxed">
-              Tem uma ideia para um software SaaS, dashboard administrativo complexo, portal com integrações de APIs personalizadas ou automações específicas? Nós desenhamos o escopo técnico ideal para o seu negócio decolar.
+              Conte o que você precisa. Eu te ajudo a encontrar a melhor solução e preparo uma proposta personalizada.
             </p>
           </div>
 
           <div className="relative z-10 shrink-0 w-full md:w-auto">
             <button
-              onClick={() => handlePlanSelection('Orçamento Personalizado')}
+              onClick={() => handlePlanSelection('Conversa sobre Projeto')}
               className="cursor-pointer flex items-center justify-center gap-2 w-full md:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-sm sm:text-base bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:opacity-90 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
             >
-              Fazer Briefing Personalizado
+              Quero conversar sobre meu projeto
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
