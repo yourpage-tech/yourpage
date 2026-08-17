@@ -46,6 +46,16 @@ const portfolioItems: PortfolioItem[] = [
     link: 'https://ituketi.com/',
     mockupDesktop: '/ituketiDesk.png',
     mockupMobile: '/ituketiMobile.png'
+  },
+  {
+    title: 'ANNIS',
+    category: 'Plataforma & Impacto Socioambiental',
+    description: 'Associação Nacional de Negócios de Impacto Socioambiental (ANNIS) conecta e fortalece negócios de impacto no Brasil com recursos, networking, eventos e ferramentas educacionais para crescimento e colaboração.',
+    image: '/annisDesk.png',
+    tags: ['Impacto Socioambiental', 'Networking', 'Ferramentas Educacionais', 'Negócios de Impacto'],
+    link: 'https://www.annis.org.br/',
+    mockupDesktop: '/annisDesk.png',
+    mockupMobile: '/annisMobile.png'
   }
 ];
 
