@@ -70,12 +70,10 @@ export function HeroSection() {
           disableRemotePlayback
           className="w-full h-full object-cover scale-105 pointer-events-none"
         />
-        {/* Degradê apenas no lado esquerdo (esfumaçado) para leitura perfeita da legenda, com reforço de escurecimento no mobile */}
-        <div className="absolute inset-y-0 left-0 w-full md:w-3/4 lg:w-3/5 bg-gradient-to-r from-black/95 via-black/85 md:via-black/65 to-black/70 md:to-transparent"></div>
-        {/* Escurecimento extra exclusivo para mobile para leitura perfeita */}
-        <div className="absolute inset-0 bg-black/40 md:hidden pointer-events-none"></div>
-        {/* Degradê sutil no topo e rodapé para encaixar o menu e o rodapé da página */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-background/90"></div>
+        {/* Degradê escuro concentrado EXCLUSIVAMENTE atrás dos textos (lado esquerdo) para leitura perfeita */}
+        <div className="absolute inset-y-0 left-0 w-full md:w-[55%] lg:w-[50%] bg-gradient-to-r from-black/95 via-black/85 to-transparent pointer-events-none"></div>
+        {/* Degradê sutil no topo e rodapé para encaixar o menu e a transição do fundo */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-background/90 pointer-events-none"></div>
       </div>
 
       {/* Conteúdo Sobreposto Alinhado à Esquerda sobre a Camada Esfumaçada */}
