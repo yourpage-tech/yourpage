@@ -1,124 +1,155 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 export function HeroSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Função para garantir a reprodução contínua e sem interrupções
+    const forcePlay = () => {
+      if (video.paused) {
+        video.play().catch(() => {
+          // Trata silenciosamente se o navegador adiar o autoplay
+        });
+      }
+    };
+
+    forcePlay();
+
+    // Reconecta a reprodução caso o navegador pause (ex: modo de economia de energia ou troca de aba)
+    const handlePause = () => forcePlay();
+    const handleEnded = () => forcePlay();
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        forcePlay();
+      }
+    };
+
+    video.addEventListener('pause', handlePause);
+    video.addEventListener('ended', handleEnded);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      video.removeEventListener('pause', handlePause);
+      video.removeEventListener('ended', handleEnded);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-12 sm:pt-32 sm:pb-20">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-transparent"></div>
-
-      {/* Animated glow orbs */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute top-1/4 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-blue-600/30 rounded-full blur-3xl"
-      ></motion.div>
-
-      <motion.div
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1
-        }}
-        className="absolute bottom-1/4 right-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-purple-600/30 rounded-full blur-3xl"
-      ></motion.div>
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-600/20 mb-5 sm:mb-6"
-          >
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-600" />
-            <span className="text-xs sm:text-sm font-medium">Soluções digitais estratégicas</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight tracking-tight"
-          >
-            Transforme seu negócio em uma
-            <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              presença digital estratégica
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-base sm:text-xl md:text-2xl text-muted-foreground mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed"
-          >
-            Sites profissionais, elegantes e otimizados que atraem mais clientes
-            e fortalecem sua credibilidade no mercado digital.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto"
-          >
-            <motion.button
-              onClick={() => document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth' })}
-              whileHover={{ scale: 1.03, boxShadow: "0 20px 40px rgba(124, 58, 237, 0.3)" }}
-              whileTap={{ scale: 0.97 }}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold flex items-center justify-center gap-2 shadow-lg shadow-purple-500/30 cursor-pointer text-sm sm:text-base"
-            >
-              Quero mais clientes online
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-            </motion.button>
-
-            <motion.button
-              onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border-2 border-border hover:border-purple-600/50 font-semibold transition-colors cursor-pointer text-sm sm:text-base"
-            >
-              Ver projetos
-            </motion.button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="mt-10 sm:mt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm text-muted-foreground"
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              Sites responsivos
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              SEO otimizado
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              Entrega rápida
-            </div>
-          </motion.div>
-        </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24">
+      {/* Vídeo de Fundo 100% Nítido e Brilhante (Sem Camadas Escuras Bloqueando a Imagem) */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <video
+          ref={videoRef}
+          src="/video header yp.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          disablePictureInPicture
+          disableRemotePlayback
+          className="w-full h-full object-cover scale-105"
+        />
+        {/* Degradê apenas no topo para a barra de navegação e no rodapé para a transição do fundo */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-background"></div>
       </div>
 
-      {/* Decorative grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)] pointer-events-none"></div>
+      {/* Conteúdo Sobreposto em Destaque no Centro */}
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-4xl text-center">
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md mb-6 shadow-lg shadow-purple-900/20"
+        >
+          <Sparkles className="w-4 h-4 text-purple-400" />
+          <span className="text-xs sm:text-sm font-medium text-white/90">Soluções digitais estratégicas</span>
+        </motion.div>
+
+        {/* Frase mais curta e concisa sobreposta ao vídeo */}
+        <motion.h1
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]"
+        >
+          Presença Digital
+          <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+            Estratégica
+          </span>
+        </motion.h1>
+
+        {/* Subtítulo curto complementar */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="text-base sm:text-lg md:text-xl text-white mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] font-medium"
+        >
+          Transforme seu negócio com sites, landing pages e sistemas modernos de alta conversão.
+        </motion.p>
+
+        {/* Botões de Ação */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-xl mx-auto"
+        >
+          <motion.button
+            onClick={() => document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth' })}
+            whileHover={{ scale: 1.03, boxShadow: "0 20px 40px rgba(124, 58, 237, 0.4)" }}
+            whileTap={{ scale: 0.97 }}
+            className="w-full sm:w-auto px-10 sm:px-12 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold flex items-center justify-center gap-2 shadow-xl shadow-purple-600/30 cursor-pointer text-sm sm:text-base border border-white/10"
+          >
+            Quero mais clientes online
+            <ArrowRight className="w-5 h-5" />
+          </motion.button>
+
+          <motion.button
+            onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="w-full sm:w-auto px-10 sm:px-12 py-2.5 sm:py-3 rounded-xl border border-white/20 bg-black/40 hover:bg-black/60 hover:border-purple-500/50 font-semibold backdrop-blur-md text-white transition-all cursor-pointer text-sm sm:text-base"
+          >
+            Ver projetos
+          </motion.button>
+        </motion.div>
+
+        {/* Destaques de Confiança */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-12 sm:mt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-300/80 font-medium"
+        >
+          <div className="flex items-center gap-2 bg-black/40 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+            Sites responsivos
+          </div>
+          <div className="flex items-center gap-2 bg-black/40 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+            SEO otimizado
+          </div>
+          <div className="flex items-center gap-2 bg-black/40 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+            Entrega rápida
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Decorative grid overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)] pointer-events-none z-10"></div>
     </section>
   );
 }
+
+
+
