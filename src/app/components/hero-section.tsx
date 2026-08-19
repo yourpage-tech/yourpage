@@ -9,18 +9,24 @@ export function HeroSection() {
     const video = videoRef.current;
     if (!video) return;
 
+    // Configurações imperativas para garantir reprodução automática inline no mobile (iOS/Android)
+    video.defaultMuted = true;
+    video.muted = true;
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('webkit-playsinline', 'true');
+
     // Função para garantir a reprodução contínua e sem interrupções
     const forcePlay = () => {
       if (video.paused) {
         video.play().catch(() => {
-          // Trata silenciosamente se o navegador adiar o autoplay
+          // Trata silenciosamente caso o SO bloqueie temporariamente
         });
       }
     };
 
     forcePlay();
 
-    // Reconecta a reprodução caso o navegador pause (ex: modo de economia de energia ou troca de aba)
+    // Eventos para reconectar a reprodução contínua e ao interagir na tela no mobile
     const handlePause = () => forcePlay();
     const handleEnded = () => forcePlay();
     const handleVisibilityChange = () => {
@@ -28,21 +34,28 @@ export function HeroSection() {
         forcePlay();
       }
     };
+    const handleTouchOrScroll = () => {
+      forcePlay();
+    };
 
     video.addEventListener('pause', handlePause);
     video.addEventListener('ended', handleEnded);
     document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener('touchstart', handleTouchOrScroll, { passive: true, once: true });
+    document.addEventListener('scroll', handleTouchOrScroll, { passive: true, once: true });
 
     return () => {
       video.removeEventListener('pause', handlePause);
       video.removeEventListener('ended', handleEnded);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener('touchstart', handleTouchOrScroll);
+      document.removeEventListener('scroll', handleTouchOrScroll);
     };
   }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-24">
-      {/* Vídeo de Fundo 100% Nítido e Brilhante (Sem Camadas Escuras Bloqueando a Imagem) */}
+      {/* Vídeo de Fundo com Foco no Meio/Direita e Esfumaçado Escuro no Canto Esquerdo */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
         <video
           ref={videoRef}
@@ -51,98 +64,103 @@ export function HeroSection() {
           loop
           muted
           playsInline
-          preload="metadata"
+          controls={false}
+          preload="auto"
           disablePictureInPicture
           disableRemotePlayback
-          className="w-full h-full object-cover scale-105"
+          className="w-full h-full object-cover scale-105 pointer-events-none"
         />
-        {/* Degradê apenas no topo para a barra de navegação e no rodapé para a transição do fundo */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-background"></div>
+        {/* Degradê apenas no lado esquerdo (esfumaçado) para leitura perfeita da legenda */}
+        <div className="absolute inset-y-0 left-0 w-full md:w-3/4 lg:w-3/5 bg-gradient-to-r from-black/90 via-black/65 to-transparent"></div>
+        {/* Degradê sutil no topo e rodapé para encaixar o menu e o rodapé da página */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-background/90"></div>
       </div>
 
-      {/* Conteúdo Sobreposto em Destaque no Centro */}
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-4xl text-center">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md mb-6 shadow-lg shadow-purple-900/20"
-        >
-          <Sparkles className="w-4 h-4 text-purple-400" />
-          <span className="text-xs sm:text-sm font-medium text-white/90">Soluções digitais estratégicas</span>
-        </motion.div>
-
-        {/* Frase mais curta e concisa sobreposta ao vídeo */}
-        <motion.h1
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]"
-        >
-          Presença Digital
-          <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-            Estratégica
-          </span>
-        </motion.h1>
-
-        {/* Subtítulo curto complementar */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="text-base sm:text-lg md:text-xl text-white mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] font-medium"
-        >
-          Transforme seu negócio com sites, landing pages e sistemas modernos de alta conversão.
-        </motion.p>
-
-        {/* Botões de Ação */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-xl mx-auto"
-        >
-          <motion.button
-            onClick={() => document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth' })}
-            whileHover={{ scale: 1.03, boxShadow: "0 20px 40px rgba(124, 58, 237, 0.4)" }}
-            whileTap={{ scale: 0.97 }}
-            className="w-full sm:w-auto px-10 sm:px-12 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold flex items-center justify-center gap-2 shadow-xl shadow-purple-600/30 cursor-pointer text-sm sm:text-base border border-white/10"
+      {/* Conteúdo Sobreposto Alinhado à Esquerda sobre a Camada Esfumaçada */}
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
+        <div className="max-w-2xl text-left flex flex-col items-start">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/15 backdrop-blur-md mb-6 shadow-lg shadow-purple-900/20"
           >
-            Quero mais clientes online
-            <ArrowRight className="w-5 h-5" />
-          </motion.button>
+            <Sparkles className="w-4 h-4 text-purple-400" />
+            <span className="text-xs sm:text-sm font-medium text-white/90">Soluções digitais estratégicas</span>
+          </motion.div>
 
-          <motion.button
-            onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="w-full sm:w-auto px-10 sm:px-12 py-2.5 sm:py-3 rounded-xl border border-white/20 bg-black/40 hover:bg-black/60 hover:border-purple-500/50 font-semibold backdrop-blur-md text-white transition-all cursor-pointer text-sm sm:text-base"
+          {/* Legenda/Título no canto esquerdo */}
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]"
           >
-            Ver projetos
-          </motion.button>
-        </motion.div>
+            Presença Digital
+            <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+              Estratégica
+            </span>
+          </motion.h1>
 
-        {/* Destaques de Confiança */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-12 sm:mt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-300/80 font-medium"
-        >
-          <div className="flex items-center gap-2 bg-black/40 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-            Sites responsivos
-          </div>
-          <div className="flex items-center gap-2 bg-black/40 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-            SEO otimizado
-          </div>
-          <div className="flex items-center gap-2 bg-black/40 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-            Entrega rápida
-          </div>
-        </motion.div>
+          {/* Subtítulo curto complementar */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="text-base sm:text-lg md:text-xl text-gray-100 mb-8 sm:mb-10 max-w-xl leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] font-medium"
+          >
+            Transforme seu negócio com sites, landing pages e sistemas modernos de alta conversão.
+          </motion.p>
+
+          {/* Botões de Ação Alinhados à Esquerda */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row gap-4 justify-start items-stretch sm:items-center w-full sm:w-auto"
+          >
+            <motion.button
+              onClick={() => document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth' })}
+              whileHover={{ scale: 1.03, boxShadow: "0 20px 40px rgba(124, 58, 237, 0.4)" }}
+              whileTap={{ scale: 0.97 }}
+              className="px-8 sm:px-10 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold flex items-center justify-center gap-2 shadow-xl shadow-purple-600/30 cursor-pointer text-sm sm:text-base border border-white/10"
+            >
+              Quero mais clientes online
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+
+            <motion.button
+              onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="px-8 sm:px-10 py-3 rounded-xl border border-white/20 bg-black/50 hover:bg-black/70 hover:border-purple-500/50 font-semibold backdrop-blur-md text-white transition-all cursor-pointer text-sm sm:text-base text-center"
+            >
+              Ver projetos
+            </motion.button>
+          </motion.div>
+
+          {/* Destaques de Confiança Alinhados à Esquerda */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-10 sm:mt-14 flex flex-wrap items-center justify-start gap-4 sm:gap-6 text-xs sm:text-sm text-gray-300/90 font-medium"
+          >
+            <div className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+              Sites responsivos
+            </div>
+            <div className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+              SEO otimizado
+            </div>
+            <div className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+              Entrega rápida
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Decorative grid overlay */}
