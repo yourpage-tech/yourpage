@@ -70,10 +70,12 @@ export function HeroSection() {
           disableRemotePlayback
           className="w-full h-full object-cover scale-105 pointer-events-none"
         />
-        {/* Degradê apenas no lado esquerdo (esfumaçado) para leitura perfeita da legenda */}
-        <div className="absolute inset-y-0 left-0 w-full md:w-3/4 lg:w-3/5 bg-gradient-to-r from-black/90 via-black/65 to-transparent"></div>
+        {/* Degradê apenas no lado esquerdo (esfumaçado) para leitura perfeita da legenda, com reforço de escurecimento no mobile */}
+        <div className="absolute inset-y-0 left-0 w-full md:w-3/4 lg:w-3/5 bg-gradient-to-r from-black/95 via-black/85 md:via-black/65 to-black/70 md:to-transparent"></div>
+        {/* Escurecimento extra exclusivo para mobile para leitura perfeita */}
+        <div className="absolute inset-0 bg-black/40 md:hidden pointer-events-none"></div>
         {/* Degradê sutil no topo e rodapé para encaixar o menu e o rodapé da página */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-background/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-background/90"></div>
       </div>
 
       {/* Conteúdo Sobreposto Alinhado à Esquerda sobre a Camada Esfumaçada */}
@@ -140,22 +142,22 @@ export function HeroSection() {
             </motion.button>
           </motion.div>
 
-          {/* Destaques de Confiança Alinhados à Esquerda */}
+          {/* Destaques de Confiança Alinhados em Linha Única sem Quebras (flex-nowrap no Mobile) */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 sm:mt-14 flex flex-wrap items-center justify-start gap-4 sm:gap-6 text-xs sm:text-sm text-gray-300/90 font-medium"
+            className="mt-10 sm:mt-14 flex flex-nowrap overflow-x-auto max-w-full items-center justify-start gap-2 sm:gap-6 text-[11px] sm:text-xs md:text-sm text-gray-200 font-medium pb-1 whitespace-nowrap scrollbar-none"
           >
-            <div className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+            <div className="flex items-center gap-1.5 sm:gap-2 bg-black/60 px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full border border-white/15 backdrop-blur-md shrink-0 whitespace-nowrap shadow-md">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
               Sites responsivos
             </div>
-            <div className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+            <div className="flex items-center gap-1.5 sm:gap-2 bg-black/60 px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full border border-white/15 backdrop-blur-md shrink-0 whitespace-nowrap shadow-md">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
               SEO otimizado
             </div>
-            <div className="flex items-center gap-2 bg-black/50 px-3 py-1.5 rounded-full border border-white/10 backdrop-blur-sm">
+            <div className="flex items-center gap-1.5 sm:gap-2 bg-black/60 px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full border border-white/15 backdrop-blur-md shrink-0 whitespace-nowrap shadow-md">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
               Entrega rápida
             </div>
