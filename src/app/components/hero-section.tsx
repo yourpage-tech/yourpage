@@ -1,9 +1,57 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 export function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Efeito de digitação (Typewriter) fluído com cursor único que transita da linha 1 para a linha 2
+  const [typedLine1, setTypedLine1] = useState('');
+  const [typedLine2, setTypedLine2] = useState('');
+  const [activeLine, setActiveLine] = useState<1 | 2>(1);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+  useEffect(() => {
+    let isCancelled = false;
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    const runTypewriter = async () => {
+      await sleep(200);
+
+      // 1. Digita a primeira linha "Presença Digital" (ritmo suave de ~75ms)
+      const line1 = "Presença Digital";
+      for (let i = 1; i <= line1.length; i++) {
+        if (isCancelled) return;
+        setTypedLine1(line1.slice(0, i));
+        await sleep(75);
+      }
+
+      // Transita o cursor único para a segunda linha
+      if (isCancelled) return;
+      setActiveLine(2);
+      await sleep(150);
+
+      // 2. Digita a segunda linha "Estratégica"
+      const line2 = "Estratégica";
+      for (let i = 1; i <= line2.length; i++) {
+        if (isCancelled) return;
+        setTypedLine2(line2.slice(0, i));
+        await sleep(75);
+      }
+
+      // Mantém o traço piscando por um breve período (~1.8s) no final da frase completa
+      await sleep(1800);
+
+      if (isCancelled) return;
+      setIsTypingComplete(true);
+    };
+
+    runTypewriter();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -90,16 +138,24 @@ export function HeroSection() {
             <span className="text-xs sm:text-sm font-medium text-white/90">Soluções digitais estratégicas</span>
           </motion.div>
 
-          {/* Legenda/Título no canto esquerdo */}
+          {/* Legenda/Título no canto esquerdo com efeito de digitação Typewriter de cursor único fluído */}
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]"
+            className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] min-h-[110px] sm:min-h-[140px]"
           >
-            Presença Digital
-            <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-              Estratégica
+            <span>
+              {typedLine1}
+              {activeLine === 1 && !isTypingComplete && (
+                <span className="inline-block w-1 sm:w-1.5 h-6 sm:h-10 bg-purple-400 rounded-sm animate-[pulse_0.6s_ease-in-out_infinite] ml-1.5 align-baseline shadow-[0_0_10px_#a855f7]" />
+              )}
+            </span>
+            <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] min-h-[42px]">
+              {typedLine2}
+              {activeLine === 2 && !isTypingComplete && (
+                <span className="inline-block w-1 sm:w-1.5 h-6 sm:h-10 bg-purple-400 rounded-sm animate-[pulse_0.6s_ease-in-out_infinite] ml-1.5 align-baseline shadow-[0_0_10px_#a855f7]" />
+              )}
             </span>
           </motion.h1>
 
