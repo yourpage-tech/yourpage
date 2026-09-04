@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="yp-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#2563eb" />
       <stop offset="100%" stop-color="#9333ea" />
     </linearGradient>
   </defs>
-  <!-- Background squircle capsule matching the company logo theme -->
-  <rect x="32" y="32" width="448" height="448" rx="112" fill="url(#gradient)" />
-  <!-- Monogram YP text -->
-  <text x="256" y="326" font-family="'Outfit', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="180" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="-6">YP</text>
+  <!-- Fundo circular perfeito para preencher 100% no recorte do Google Search e navegadores -->
+  <circle cx="256" cy="256" r="256" fill="url(#yp-gradient)" />
+  <!-- Monograma YP em destaque e visibilidade maxima -->
+  <text x="256" y="262" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="240" font-weight="900" fill="#ffffff" text-anchor="middle" dominant-baseline="central" letter-spacing="-8">YP</text>
 </svg>

@@ -145,13 +145,14 @@ export function HeroSection() {
             transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] min-h-[110px] sm:min-h-[140px]"
           >
-            <span>
+            <span className="sr-only">Desenvolvimento de Sites e Sistemas em Maceió - YourPage</span>
+            <span aria-hidden="true">
               {typedLine1}
               {activeLine === 1 && !isTypingComplete && (
                 <span className="inline-block w-1 sm:w-1.5 h-6 sm:h-10 bg-purple-400 rounded-sm animate-[pulse_0.6s_ease-in-out_infinite] ml-1.5 align-baseline shadow-[0_0_10px_#a855f7]" />
               )}
             </span>
-            <span className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] min-h-[42px]">
+            <span aria-hidden="true" className="block mt-1 sm:mt-2 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] min-h-[42px]">
               {typedLine2}
               {activeLine === 2 && !isTypingComplete && (
                 <span className="inline-block w-1 sm:w-1.5 h-6 sm:h-10 bg-purple-400 rounded-sm animate-[pulse_0.6s_ease-in-out_infinite] ml-1.5 align-baseline shadow-[0_0_10px_#a855f7]" />

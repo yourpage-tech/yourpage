@@ -79,7 +79,10 @@ export function AboutSection() {
                 <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-border/50 group-hover:border-purple-600/50 transition-colors duration-300 relative z-10 shadow-lg">
                   <img
                     src={member.image}
-                    alt={member.name}
+                    alt={`Foto de ${member.name} - ${member.role} da YourPage em Maceió`}
+                    loading="lazy"
+                    width={144}
+                    height={144}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
