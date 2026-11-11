@@ -40,7 +40,7 @@ export function Header() {
 
   const handleWhatsAppContact = () => {
     const message = encodeURIComponent("Olá, gostaria de falar com um especialista.");
-    window.open(`https://wa.me/5582988736580?text=${message}`, '_blank');
+    window.open(`https://wa.me/5582993791661?text=${message}`, '_blank');
   };
 
   return (

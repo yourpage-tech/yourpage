@@ -110,7 +110,7 @@ export function CTASection() {
               whileTap={{ scale: 0.97 }}
               onClick={() => {
                 const message = encodeURIComponent("Olá, gostaria de falar com um especialista.");
-                window.open(`https://wa.me/5582988736580?text=${message}`, '_blank');
+                window.open(`https://wa.me/5582993791661?text=${message}`, '_blank');
               }}
               className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border-2 border-white/30 backdrop-blur-sm font-semibold text-sm sm:text-base hover:bg-white/10 transition-colors cursor-pointer"
             >

@@ -36,7 +36,7 @@ export function AboutSection() {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -52,10 +52,10 @@ export function AboutSection() {
           </h2>
           <div className="max-w-3xl mx-auto space-y-4">
             <p className="text-base sm:text-xl text-muted-foreground leading-relaxed font-medium">
-              Somos uma dupla de profissionais de tecnologia que une desenvolvimento, design e visão de produto para transformar ideias em soluções digitais profissionais, rápidas e escaláveis.
+              Sediada em Maceió/AL, a YourPage é liderada por uma dupla de especialistas em tecnologia que une desenvolvimento de software, design UI/UX e visão de produto para transformar ideias em sites e sistemas digitais rápidos e escaláveis.
             </p>
             <p className="text-sm sm:text-base text-muted-foreground/80 leading-relaxed max-w-2xl mx-auto">
-              Cada projeto é desenvolvido sob medida, com acompanhamento próximo, comunicação clara e foco no resultado do negócio.
+              Cada projeto é desenvolvido sob medida para empresas de Maceió, Alagoas e todo o Brasil, com acompanhamento próximo, comunicação clara e foco no resultado do negócio.
             </p>
           </div>
         </motion.div>
@@ -64,7 +64,7 @@ export function AboutSection() {
           {team.map((member, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.2 }}

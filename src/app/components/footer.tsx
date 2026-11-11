@@ -48,7 +48,7 @@ export function Footer() {
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.1, y: -2 }}
-                href="https://wa.me/5582988736580?text=Ol%C3%A1%2C%20vim%20pelo%20site%20YourPage."
+                href="https://wa.me/5582993791661?text=Ol%C3%A1%2C%20vim%20pelo%20site%20YourPage."
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp YourPage"
@@ -102,10 +102,10 @@ export function Footer() {
               <li className="flex items-start gap-2.5 text-muted-foreground">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" />
                 <a
-                  href="https://wa.me/5582988736580?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+                  href="https://wa.me/5582993791661?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors">(82) 98873-6580</a>
+                  className="hover:text-foreground transition-colors">(82) 99379-1661</a>
               </li>
               <li className="flex items-start gap-2.5 text-muted-foreground">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" />

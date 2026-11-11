@@ -76,7 +76,7 @@ export function PortfolioSection() {
     <section id="portfolio" className="py-16 md:py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -86,7 +86,7 @@ export function PortfolioSection() {
             Projetos que <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">inspiram</span>
           </h2>
           <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Veja alguns exemplos do nosso trabalho e imagine o potencial do seu negócio
+            Veja alguns exemplos de sites e sistemas desenvolvidos pela YourPage e imagine o potencial do seu negócio
           </p>
         </motion.div>
 
@@ -96,7 +96,7 @@ export function PortfolioSection() {
               <motion.div
                 key={index}
                 onClick={() => handleOpenItem(item)}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}

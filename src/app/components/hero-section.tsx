@@ -129,25 +129,25 @@ export function HeroSection() {
         <div className="max-w-2xl text-left flex flex-col items-start">
           {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/15 backdrop-blur-md mb-6 shadow-lg shadow-purple-900/20"
           >
             <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-xs sm:text-sm font-medium text-white/90">Soluções digitais estratégicas</span>
+            <span className="text-xs sm:text-sm font-medium text-white/90">Criação de Sites e Sistemas em Maceió · AL</span>
           </motion.div>
 
           {/* Legenda/Título no canto esquerdo com efeito de digitação Typewriter de cursor único fluído */}
           <motion.h1
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] min-h-[110px] sm:min-h-[140px]"
           >
-            <span className="sr-only">Desenvolvimento de Sites e Sistemas em Maceió - YourPage</span>
+            <span className="sr-only">YourPage - Criação e Desenvolvimento de Sites Profissionais, Landing Pages e Sistemas Web em Maceió - AL</span>
             <span aria-hidden="true">
-              {typedLine1}
+              {typedLine1 || 'Presença Digital'}
               {activeLine === 1 && !isTypingComplete && (
                 <span className="inline-block w-1 sm:w-1.5 h-6 sm:h-10 bg-purple-400 rounded-sm animate-[pulse_0.6s_ease-in-out_infinite] ml-1.5 align-baseline shadow-[0_0_10px_#a855f7]" />
               )}
@@ -162,17 +162,17 @@ export function HeroSection() {
 
           {/* Subtítulo curto complementar */}
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             className="text-base sm:text-lg md:text-xl text-gray-100 mb-8 sm:mb-10 max-w-xl leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] font-medium"
           >
-            Transforme seu negócio com sites, landing pages e sistemas modernos de alta conversão.
+            Desenvolvimento de sites profissionais, landing pages e sistemas sob medida em Maceió para transformar visitantes em clientes todos os dias.
           </motion.p>
 
           {/* Botões de Ação Alinhados à Esquerda */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col sm:flex-row gap-4 justify-start items-stretch sm:items-center w-full sm:w-auto"

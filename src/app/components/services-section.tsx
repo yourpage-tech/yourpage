@@ -43,7 +43,7 @@ const services = [
 export function ServicesSection() {
   const handleWhatsAppContact = () => {
     const message = encodeURIComponent("Olá, gostaria de solicitar um orçamento personalizado.");
-    window.open(`https://wa.me/5582988736580?text=${message}`, '_blank');
+    window.open(`https://wa.me/5582993791661?text=${message}`, '_blank');
   };
 
   return (
@@ -52,7 +52,7 @@ export function ServicesSection() {
       
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -62,7 +62,7 @@ export function ServicesSection() {
             Nossos <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Serviços</span>
           </h2>
           <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Soluções completas para fortalecer sua presença digital e conquistar mais clientes
+            Criação de sites profissionais, landing pages e sistemas web em Maceió/AL para fortalecer sua presença digital e conquistar mais clientes
           </p>
         </motion.div>
 
@@ -70,7 +70,7 @@ export function ServicesSection() {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}

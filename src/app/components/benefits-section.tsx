@@ -49,7 +49,7 @@ export function BenefitsSection() {
     <section id="beneficios" className="py-16 md:py-32 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -59,7 +59,7 @@ export function BenefitsSection() {
             Por que escolher a <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">YourPage</span>?
           </h2>
           <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Soluções completas e estratégicas para fortalecer sua presença digital
+            Desenvolvimento de sites e sistemas em Maceió com foco em performance, posicionamento no Google e conversão
           </p>
         </motion.div>
 
@@ -67,7 +67,7 @@ export function BenefitsSection() {
           {benefits.map((benefit, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
