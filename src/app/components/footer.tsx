@@ -88,6 +88,11 @@ export function Footer() {
                   Planos
                 </a>
               </li>
+              <li>
+                <a href="#faq" onClick={(e) => handleNavClick(e, '#faq')} className="text-muted-foreground hover:text-foreground transition-colors">
+                  FAQ
+                </a>
+              </li>
             </ul>
           </div>
 

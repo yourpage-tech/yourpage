@@ -3,6 +3,16 @@ import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useTheme } from './theme-provider';
 import { useState, MouseEvent } from 'react';
 
+const navItems = [
+  { name: 'Benefícios', href: '#beneficios' },
+  { name: 'Serviços', href: '#servicos' },
+  { name: 'Portfólio', href: '#portfolio' },
+  { name: 'Como Funciona', href: '#como-funciona' },
+  { name: 'Quem Somos', href: '#sobre-nos' },
+  { name: 'Orçamentos', href: '#planos' },
+  { name: 'FAQ', href: '#faq' },
+];
+
 export function Header() {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,20 +75,13 @@ export function Header() {
           </div>
         </motion.div>
 
-        <nav className="hidden md:flex items-center gap-8">
-          {[
-            { name: 'Benefícios', href: '#beneficios' },
-            { name: 'Serviços', href: '#servicos' },
-            { name: 'Portfólio', href: '#portfolio' },
-            { name: 'Como Funciona', href: '#como-funciona' },
-            { name: 'Quem Somos', href: '#sobre-nos' },
-            { name: 'Orçamentos', href: '#planos' }
-          ].map((item) => (
+        <nav className="hidden md:flex items-center gap-5 lg:gap-8">
+          {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="relative text-foreground/80 hover:text-foreground transition-colors py-1 font-medium group cursor-pointer"
+              className="relative text-sm lg:text-base text-foreground/80 hover:text-foreground transition-colors py-1 font-medium group cursor-pointer whitespace-nowrap"
             >
               <span>{item.name}</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transition-all duration-300 group-hover:w-full shadow-sm shadow-purple-500/50"></span>
@@ -127,14 +130,7 @@ export function Header() {
             className="md:hidden border-t border-border/50 bg-background/95 backdrop-blur-xl overflow-hidden"
           >
             <nav className="container mx-auto px-5 py-5 flex flex-col gap-3">
-              {[
-                { name: 'Benefícios', href: '#beneficios' },
-                { name: 'Serviços', href: '#servicos' },
-                { name: 'Portfólio', href: '#portfolio' },
-                { name: 'Como Funciona', href: '#como-funciona' },
-                { name: 'Quem Somos', href: '#sobre-nos' },
-                { name: 'Orçamentos', href: '#planos' }
-              ].map((item) => (
+              {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
