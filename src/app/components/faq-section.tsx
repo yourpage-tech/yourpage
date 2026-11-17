@@ -26,7 +26,7 @@ export const faqItems = [
   {
     question: 'Como solicitar um orçamento de site em Maceió com a YourPage?',
     answer:
-      'Você pode solicitar um orçamento gratuito clicando nos botões de WhatsApp aqui no site pelo número (82) 99379-1661 ou preenchendo nosso briefing rápido online. Analisamos sua necessidade e enviamos uma proposta sob medida para o seu negócio.',
+      'Você pode solicitar um orçamento gratuito clicando nos botões de WhatsApp aqui no site pelo número (82) 99379-1661 ou enviando um e-mail para yourpage.business.tech@gmail.com. Analisamos sua necessidade e enviamos uma proposta sob medida para o seu negócio.',
   },
 ];
 
