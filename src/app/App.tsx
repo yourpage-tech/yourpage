@@ -27,8 +27,8 @@ function HomePage() {
       <HowWeWorkSection />
       <TestimonialsSection />
       <AboutSection />
-      <FAQSection />
       <CTASection />
+      <FAQSection />
       <Footer />
       <ScrollToTop />
     </>
